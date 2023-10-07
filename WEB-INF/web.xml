@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
+                      https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
+  version="5.0"
+  metadata-complete="true">
+
+    <!-- .............. M E S  P R O J E T S........................ -->
+    <servlet>
+        <servlet-name>Url_mapping</servlet-name>
+        <servlet-class>etu002087.framework.servlet.FrontServlet</servlet-class>
+        <init-param>
+            <param-name>racine_D</param-name>
+            
+            <param-value>C:/Program Files/Apache Software Foundation/Tomcat 10.0/webapps/RHgestion/WEB-INF/classes/etu002087</param-value>
+            <description>chemin absolut par apport au fichier</description>
+        </init-param>
+        <init-param>
+            <param-name>base_url_site</param-name>
+            <param-value>http://localhost:8080/RHgestion/</param-value>
+            <description>bade url de votre cite</description>
+        </init-param>
+        <init-param>
+            <param-name>split_class</param-name>
+            <param-value>classes\\</param-value>
+            <description>pour avoir la class </description>
+        </init-param>
+        <init-param>
+            <param-name>connection</param-name>
+            <param-value>isconnected</param-value>
+            <description>session qui vas indique que l'utilisateur est connecte</description>
+        </init-param>
+        <init-param>
+            <param-name>profil</param-name>
+            <param-value>profil</param-value>
+            <description>nom du session qui va contenir le typde de profile de l'utilisateur</description>
+        </init-param>
+        <init-param>
+            <param-name>UrlRedirection</param-name>
+            <param-value>Login.jsp</param-value>
+            <description>nom du session qui va contenir le typde de profile de l'utilisateur</description>
+        </init-param>
+
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Url_mapping</servlet-name>
+        <url-pattern>*.do</url-pattern>
+    </servlet-mapping>
+    <multipart-config>
+        <!-- Taille maximale totale des parties -->
+        <max-file-size>5242880</max-file-size> <!-- 5 Mo -->
+        <!-- Taille maximale de chaque partie -->
+        <max-request-size>1048576</max-request-size> <!-- 1 Mo -->
+        <!-- Taille maximale de la mémoire tampon pour les parties -->
+        <file-size-threshold>0</file-size-threshold>
+    </multipart-config>
+    <!-- ............................................................ -->
+    <!-- configuration pour que mon application soit accesible pour une application react -->
+    <filter>
+        <filter-name>CorsFilter</filter-name>
+        <filter-class>org.apache.catalina.filters.CorsFilter</filter-class>
+        <init-param>
+            <param-name>cors.allowed.origins</param-name>
+            <param-value>http://localhost:3000</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>CorsFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+</web-app>
+ 
