@@ -58,105 +58,14 @@
 <body>
   <div class="container-scroller">
     <!-- partial:partials/_navbar.html -->
-    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
-      <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <!-- <a class="navbar-brand brand-logo mr-5" href="#"><img src="images/logo.svg" class="mr-2" alt="logo"/></a>
-         <a class="navbar-brand brand-logo-mini" href="#"><img src="images/logo-mini.svg" alt="logo"/></a> -->
-        <h4>Nom Service</h4>
-      </div>
-      <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
-        <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
-          <span class="icon-menu"></span>
-        </button>
-        <ul class="navbar-nav mr-lg-2">
-          <li class="nav-item nav-search d-none d-lg-block">
-            <div class="input-group">
-              <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
-                <span class="input-group-text" id="search">
-                  <i class="icon-search"></i>
-                </span>
-              </div>
-              <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
-            </div>
-          </li>
-        </ul>
-        <ul class="navbar-nav navbar-nav-right">
-          <li class="nav-item dropdown">
-            <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown"></a>
-              <i class="icon-bell mx-0"></i>
-              <span class="count"></span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
-              <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
-              <a class="dropdown-item preview-item">
-                <div class="preview-thumbnail">
-                  <div class="preview-icon bg-success">
-                    <i class="ti-info-alt mx-0"></i>
-                  </div>
-                </div>
-                <div class="preview-item-content">
-                  <h6 class="preview-subject font-weight-normal">Application Error</h6>
-                  <p class="font-weight-light small-text mb-0 text-muted">
-                    Just now
-                  </p>
-                </div>
-              </a>
-              <a class="dropdown-item preview-item">
-                <div class="preview-thumbnail">
-                  <div class="preview-icon bg-warning">
-                    <i class="ti-settings mx-0"></i>
-                  </div>
-                </div>
-                <div class="preview-item-content">
-                  <h6 class="preview-subject font-weight-normal">Settings</h6>
-                  <p class="font-weight-light small-text mb-0 text-muted">
-                    Private message
-                  </p>
-                </div>
-              </a>
-              <a class="dropdown-item preview-item">
-                <div class="preview-thumbnail">
-                  <div class="preview-icon bg-info">
-                    <i class="ti-user mx-0"></i>
-                  </div>
-                </div>
-                <div class="preview-item-content">
-                  <h6 class="preview-subject font-weight-normal">New user registration</h6>
-                  <p class="font-weight-light small-text mb-0 text-muted"></p>
-                    2 days ago
-                  </p>
-                </div>
-              </a>
-            </div>
-          </li>
-          <li class="nav-item nav-profile dropdown">
-            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown"></a>
-              <i class="icon-head menu-icon"></i>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown"></div>
-              <a class="dropdown-item"></a>
-                <i class="ti-settings text-primary"></i>
-                Settings
-              </a>
-              <a class="dropdown-item">
-                <i class="ti-power-off text-primary"></i>
-                Logout
-              </a>
-            </div>
-          </li>
-        </ul>
-        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
-          <span class="icon-menu"></span>
-        </button>
-      </div>
-    </nav>
+    
     <!-- partial -->
     <div class="container-fluid page-body-wrapper">
       <!-- partial:partials/_settings-panel.html -->
       <!-- partial -->
 
       <!-- partial -->
-      <div class="main-panel">   
+      <div class="main-panel" style="margin: auto;">   
         <div class="content-wrapper">
           <div class="row">
             <div class="col-lg-12 grid-margin">
@@ -169,15 +78,12 @@
                         <button class="btn btn-success btn-rounded btn-icon" onclick="addService()">
                           <i class="fas fa-plus"></i>
                         </button>
-                        <a href="http://localhost:8080/RHgestion/accuilledemande_besoin.do">
-                          <button class="btn btn-success btn-rounded btn-icon">
-                            <i class="fas fa-angle-left"></i>
-                          </button>
-                        </a>
+                        
                         <div class="content-wrapper"  class="pagination">
                           <div class="btn-group" role="group" aria-label="Basic example" class="pagination2"></div>
                            <a href="http://localhost:8080/RHgestion/paginationquestion.do?nbr=<%  out.println(precedent); %>" >  <button type="button" class="btn btn-outline-secondary"  >1</button> </a>
-                            <button type="button" class="btn btn-outline-secondary" href="#" >X</button>
+                           <a href="/RHgestion/accuilledemande_besoin.do"><button type="button" class="btn btn-outline-secondary" href="#" >X</button></a>
+                           
                             <a  href="http://localhost:8080/RHgestion/paginationquestion.do?nbr=<%  out.println(suivant); %>"> <button type="button" class="btn btn-outline-secondary">3</button> </a>
                           </div>
                         <div class="table-responsive">
@@ -280,12 +186,7 @@
             </div>
         <% } %>
 <!-- partial:../../partials/_footer.html -->
-<footer class="footer">
-          <div class="d-sm-flex justify-content-center justify-content-sm-between">
-            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021.  Premium <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>
-            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="ti-heart text-danger ml-1"></i></span>
-          </div>
-        </footer>
+
         <!-- partial -->
       </div>
     </div>

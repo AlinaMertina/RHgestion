@@ -22,6 +22,7 @@ public class Notecritere extends Generaliser{
    Integer note;
    String idfdemande;
 
+
    Detaille_critere detaille_critere ;//rehefa ilaina amin'ny affichage vo miasa
    public void setdetaille_critere(){
       detaille_critere = new Detaille_critere();
@@ -124,7 +125,7 @@ public class Notecritere extends Generaliser{
     }else{
         model.addItem("nbr",nbr);
    }
-   String idservice = (String) getSession().get("idservice");
+   String idservice = (String) getSession().get("idserviceuser");
     model.addItem("liste",resulta);
     model.addItem("listenotevalide",new Detaille_critere().selectAllWithcondition(" join critere on detaille_critere.idfcrietere=critere.idcritere where idservice='"+idservice+"' "));
     model.setnompage("notecritere.jsp");
@@ -154,7 +155,7 @@ public class Notecritere extends Generaliser{
   @Sessionannotation()
   public etu002087.framework.ModelView setnotecritere(String iddemande){
       getSession().put("iddemande", iddemande);
-      String idservice = (String) getSession().get("idservice");
+      String idservice = (String) getSession().get("idserviceuser");
       //accuille note critere
       Vector resulta= super.selectAllWithcondition(" where idfdemande='"+iddemande+"' limit 3"); 
       ModelView model = new ModelView(); 

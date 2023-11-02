@@ -156,7 +156,7 @@
       <!-- partial:partials/_sidebar.html -->
  
       <!-- partial -->
-      <div class="main-panel">   
+      <div class="main-panel" style="margin: auto;">   
         <div class="content-wrapper">
           <div class="row">
             <div class="col-lg-12 grid-margin">
@@ -191,10 +191,10 @@
  <th>idfcrietere</th>
  <th>nomdetaillecritere</th>
                                     </tr>
-<% for(int i=0; i<liste.size();i++) { Detaille_critere service =  (Detaille_critere) liste.get(i); %>
+<% for(int i=0; i<liste.size();i++) { Detaille_critere service =  (Detaille_critere) liste.get(i); service.setcritere() %>
                                     <tr>
                                       <td class="py-1"><% out.println( service.getiddetaille_cr() ); %> </td>
-                                      <td class="py-1"><% out.println( service.getidfcrietere() ); %> </td>
+                                      <td class="py-1"><% out.println( service.getcritere().getnomcritere() ); %> </td>
                                       <td class="py-1"><% out.println( service.getnomdetaillecritere() ); %> </td>
 <td>
 <button class="btn btn-info btn-rounded btn-icon" onclick="updateService(<%out.println(i);%>)">

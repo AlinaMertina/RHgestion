@@ -174,28 +174,30 @@
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="tables">
               <i class="icon-grid-2 menu-icon"></i>
-              <span class="menu-title">Tables</span>
+              <span class="menu-title">Test emplois</span>
               <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="tables">
               <ul class="nav flex-column sub-menu">
-                 <li class="nav-item"> <a class="nav-link" href="#">Basic table</a></li>
+                 <li class="nav-item"> <a class="nav-link" href="http://localhost:8080/RHgestion/cvinsert.do">Insert demande employer</a></li>
               </ul>
             </div>
           </li>
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#icons" aria-expanded="false" aria-controls="icons">
               <i class="icon-contract menu-icon"></i>
-              <span class="menu-title">Icons</span>
+              <span class="menu-title">Conger Employer</span>
               <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="icons">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="#">Mdi icons</a></li>
+                <li class="nav-item"> <a class="nav-link" href="http://localhost:8080/RHgestion/accuillecongespecifie.do">Insert Type conge</a></li>
+                <li class="nav-item"> <a class="nav-link" href="http://localhost:8080/RHgestion/listeemployerconger.do">Voir conge employer</a></li>
+
               </ul>
             </div>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
               <i class="icon-head menu-icon"></i>
               <span class="menu-title">User Pages</span>
@@ -207,8 +209,8 @@
                 <li class="nav-item"> <a class="nav-link" href="#"> Register </a></li>
               </ul>
             </div>
-          </li>
-          <li class="nav-item">
+          </li> -->
+          <!-- <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#error" aria-expanded="false" aria-controls="error">
               <i class="icon-ban menu-icon"></i>
               <span class="menu-title">Error pages</span>
@@ -220,13 +222,13 @@
                 <li class="nav-item"> <a class="nav-link" href="#"> 500 </a></li>
               </ul>
             </div>
-          </li>
-          <li class="nav-item">
+          </li> -->
+          <!-- <li class="nav-item">
             <a class="nav-link" href="#">
               <i class="icon-paper menu-icon"></i>
               <span class="menu-title">Documentation</span>
             </a>
-          </li>
+          </li> -->
         </ul>
       </nav>
       <!-- partial -->

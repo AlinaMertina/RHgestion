@@ -152,7 +152,7 @@
       <!-- partial:partials/_settings-panel.html -->
       <!-- partial -->
     
-      <div class="main-panel">   
+      <div class="main-panel" style="margin: auto;">   
         <div class="content-wrapper">
           <div class="row">
             <div class="col-lg-12 grid-margin">
@@ -165,15 +165,15 @@
                         <button class="btn btn-success btn-rounded btn-icon" onclick="addService()">
                           <i class="fas fa-plus"></i>
                         </button>
-                        <a href="http://localhost:8080/RHgestion/accuillequestion.do?iddemande=<% out.print( (String)  request.getSession().getAttribute("iddemande") ); %>">
+                        <!-- <a href="http://localhost:8080/RHgestion/accuillequestion.do?iddemande=<% out.print( (String)  request.getSession().getAttribute("iddemande") ); %>">
                           <button class="btn btn-success btn-rounded btn-icon">
                             <i class="fas fa-angle-left"></i>
                           </button>
-                        </a>
+                        </a> -->
                         <div class="content-wrapper"  class="pagination">
                           <div class="btn-group" role="group" aria-label="Basic example" class="pagination2"></div>
                            <a href="http://localhost:8080/RHgestion/paginationchoixquestion.do?nbr=<%  out.println(precedent); %>" >  <button type="button" class="btn btn-outline-secondary"  >1</button> </a>
-                            <button type="button" class="btn btn-outline-secondary" href="#" >X</button>
+                            <a href="/RHgestion/accuillequestion.do?iddemande=<% out.print( (String)  request.getSession().getAttribute("iddemande") ); %>"</a><button type="button" class="btn btn-outline-secondary" href="#" >X</button> </a>
                             <a  href="http://localhost:8080/RHgestion/paginationchoixquestion.do?nbr=<%  out.println(suivant); %>"> <button type="button" class="btn btn-outline-secondary">3</button> </a>
                           </div>
                         <div class="table-responsive">
@@ -234,7 +234,12 @@
                           <label for="exampleInputUsername1">choix</label>
                       <input type="texte" class="form-control" id="exampleInputUsername1"  name="choix">
                           <label for="exampleInputUsername1">vraifause</label>
-                      <input type="texte" class="form-control" id="exampleInputUsername1"  name="vraifause">
+                          <select class="form-control"  name="vraifause">
+                            <option value="true">True</option>
+                            <option value="false">False</option>
+                          </select>
+
+                      
                     </div>
                     <button type="submit" class="btn btn-primary mr-2" >Submit</button>
                   </form>
@@ -270,12 +275,7 @@
             </div>
         <% } %>
 <!-- partial:../../partials/_footer.html -->
-<footer class="footer">
-          <div class="d-sm-flex justify-content-center justify-content-sm-between">
-            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021.  Premium <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>
-            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="ti-heart text-danger ml-1"></i></span>
-          </div>
-        </footer>
+
         <!-- partial -->
       </div>
     </div>

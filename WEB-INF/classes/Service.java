@@ -1,5 +1,6 @@
 package etu002087.superutilisateur;
- import java.util.HashMap;
+
+import java.util.HashMap;
 import java.util.Vector;
 import generaliser.AmethodeSet;
 import generaliser.Generaliser; 
@@ -14,11 +15,23 @@ import etu002087.framework.Scopeannotation;
 import etu002087.framework.Set_value_jspannotation; 
 import etu002087.framework.Sessionannotation; 
 import etu002087.framework.Gsonannotation; 
+import etu002087.demandebesoin.*;
+
+
 @ANomTable(nomtable = "service", nbrclonne =2,nomsequence = "servicesequence")
 @Adatabase(nombase = "rh_employee", typebase= "postgres",nomuser= "postgres",password= "root",port="5432") 
 public class Service extends Generaliser{ 
    String idservice;
    String nomservice;
+
+  //  demande par service
+   Vector<Demande_besoin> listedemande = new Vector<Demande_besoin>();
+   public void setlistedemande(String idservice){
+        listedemande= new Demande_besoin().selectAllWithcondition( " where idfservice='"+idservice+"' " );
+   }
+   public Vector<Demande_besoin> getlistedemande(){
+    return listedemande;
+   }
 
       HashMap<String,Object> session;
       public void setSession(HashMap<String,Object> s){
@@ -46,6 +59,8 @@ public class Service extends Generaliser{
  public void setnomservice(String integer1){ 
         nomservice= integer1; 
     } 
+
+    
 
    @AmethodeGet(nomcolonne ="idservice") 
    @APrimarykey(nomprimarykey = "idservice") 

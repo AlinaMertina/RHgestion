@@ -14,6 +14,8 @@ import etu002087.framework.Scopeannotation;
 import etu002087.framework.Set_value_jspannotation; 
 import etu002087.framework.Sessionannotation; 
 import etu002087.framework.Gsonannotation; 
+import etu002087.demandebesoin.Detaille_critere;
+
 @ANomTable(nomtable = "critere", nbrclonne =4,nomsequence = "criteresequence")
 @Adatabase(nombase = "rh_employee", typebase= "postgres",nomuser= "postgres",password= "root",port="5432") 
 public class Critere extends Generaliser{ 
@@ -21,6 +23,14 @@ public class Critere extends Generaliser{
    String nomcritere;
    String idservice;
    String multipleoupas;
+   Vector<Detaille_critere> detaillecritere = new Vector<Detaille_critere>();
+
+      public void setdetaillecritere(String idcritere){
+          detaillecritere = (Vector) new Detaille_critere().selectAllWithcondition(" where idfcrietere='"+idcritere+"'");
+      }
+      public Vector<Detaille_critere> getdetaillecritere(){
+        return detaillecritere;
+      }
 
       HashMap<String,Object> session;
       public void setSession(HashMap<String,Object> s){
@@ -77,9 +87,11 @@ public class Critere extends Generaliser{
        return multipleoupas;
     } 
 
+    @Sessionannotation()
   @Urlannotation(index = "accuillecritere.do",nomparametre={}) 
   public etu002087.framework.ModelView accuillecritere(){ 
-    Vector resulta= super.selectAllWithcondition("limit 3"); 
+    String iservice =(String) getSession().get("idserviceuser");
+    Vector resulta= super.selectAllWithcondition(" where idservice='"+iservice+"' limit 3"); 
     ModelView model = new ModelView(); 
     model.addItem("nbr",0);
     model.addItem("liste",resulta);
@@ -101,7 +113,8 @@ public class Critere extends Generaliser{
   @Sessionannotation()
   public etu002087.framework.ModelView paginationcritere(Integer nbr){
     ModelView model = new ModelView();
-    Vector resulta= super.selectAllWithcondition(" offset "+nbr+" limit 3");
+    String iservice =(String) getSession().get("idserviceuser");
+    Vector resulta= super.selectAllWithcondition(" where idservice='"+iservice+"' offset "+nbr+" limit 3");
     if(nbr<=0){
             model.addItem("nbr",0);
     }else{
@@ -130,5 +143,22 @@ public class Critere extends Generaliser{
       model.setnompage("critere.jsp");
       return model;
   } 
-
+  
+  @Sessionannotation()
+  @Urlannotation(index = "cvinsert.do",nomparametre={"idmande","idservice"})
+  public etu002087.framework.ModelView cvinsert(String idmande,String idservice){
+      getSession().put("iddemande",idmande);
+      Vector critere= selectAllWithcondition(" where idservice='"+idservice+"' ") ;
+      Vector<Critere>  resulta = new Vector<Critere>();
+      for(int i=0;i<critere.size();i++){
+        Critere cr = (Critere) critere.get(i);
+        cr.setdetaillecritere(cr.getidcritere());
+          resulta.add(cr);
+      }
+      ModelView model = new ModelView(); 
+      model.addItem("listecritere",resulta);
+      model.setnompage("insertcv.jsp");
+      return model;
+  } 
+  
 } 

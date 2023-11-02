@@ -154,7 +154,7 @@
       <!-- partial:partials/_sidebar.html -->
 
       <!-- partial -->
-      <div class="main-panel">   
+      <div class="main-panel" style="margin: auto;">   
         <div class="content-wrapper">
           <div class="row">
             <div class="col-lg-12 grid-margin">
@@ -167,15 +167,15 @@
                         <button class="btn btn-success btn-rounded btn-icon" onclick="addService()">
                           <i class="fas fa-plus"></i>
                         </button>
-                          <a href="http://localhost:8080/RHgestion/accuilleinfo.do">
+                          <!-- <a href="http://localhost:8080/RHgestion/accuilleinfo.do">
                             <button class="btn btn-success btn-rounded btn-icon">
                               <i class="fas fa-angle-left"></i>
                             </button>
-                          </a>
+                          </a> -->
                         <div class="content-wrapper"  class="pagination">
                           <div class="btn-group" role="group" aria-label="Basic example" class="pagination2"></div>
                            <a href="http://localhost:8080/RHgestion/paginationcritere.do?nbr=<%  out.println(precedent); %>" >  <button type="button" class="btn btn-outline-secondary"  >1</button> </a>
-                            <button type="button" class="btn btn-outline-secondary" href="#" >X</button>
+                           <a href="http://localhost:8080/RHgestion/superieur.do %>" >  <button type="button" class="btn btn-outline-secondary" href="#" >X</button>  </a>
                             <a  href="http://localhost:8080/RHgestion/paginationcritere.do?nbr=<%  out.println(suivant); %>"> <button type="button" class="btn btn-outline-secondary">3</button> </a>
                           </div>
                         <div class="table-responsive">

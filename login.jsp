@@ -31,10 +31,10 @@
               </div>
               <form class="pt-3" action="connexion.do" method="post">
                 <div class="form-group">
-                  <input type="text" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Employee ID" name="idfemployee" required value="EMPL000002">
+                  <input type="text" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Employee ID" name="idfemployee" required value="CAND00082">
                 </div>
                 <div class="form-group">
-                  <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password" name="modpass" required value="mertina51">
+                  <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password" name="modpass" required value="mertina50">
                 </div>
                 <div class="mt-3">
                   <input type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" value="SIGN IN">

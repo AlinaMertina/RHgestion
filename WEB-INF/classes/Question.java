@@ -22,6 +22,15 @@ public class Question extends Generaliser{
    String textquestion;
    Integer note;
 
+   Vector<Choixquestion> choix = new Vector<Choixquestion>() ;
+   public void setchoix(String idquestion){
+          choix= new Choixquestion().selectAllWithcondition( " where  idfquestion='"+idquestion+"'");
+   }
+   public Vector<Choixquestion> getchoix(){
+      return choix;
+   }
+   
+
       HashMap<String,Object> session;
       public void setSession(HashMap<String,Object> s){
          session=s;
@@ -135,5 +144,23 @@ public class Question extends Generaliser{
       model.setnompage("question.jsp");
       return model;
   } 
+
+  
+  // @Urlannotation(index = "questioncv.do",nomparametre={"iddemande"})
+  // public etu002087.framework.ModelView questioncv(String iddemande){
+    
+  //     Vector<Question> resulta = super.selectAllWithcondition( " where idfdemande='"+iddemande.toUpperCase()+"'");
+  //     Vector<Question> res =new Vector<Question>();
+  //     System.out.println(" where idfdemande='"+iddemande+"'   "+resulta.size());
+  //     for(int i=0;i<resulta.size();i++){
+  //       Question q = resulta.get(i);
+  //         q.setchoix(q.getidquestion());
+  //         res.add(q);
+  //     }
+  //     ModelView model = new ModelView(); 
+  //     model.addItem("liste",res);
+  //     model.setnompage("questioncv.jsp");
+  //     return model;
+  // } 
 
 } 

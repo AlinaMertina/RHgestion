@@ -20,6 +20,14 @@ public class Detaille_critere extends Generaliser{
    String iddetaille_cr;
    String idfcrietere;
    String nomdetaillecritere;
+   Critere critere = new Critere() ;
+   public void setcritere(){
+      critere.setidcritere(getidfcrietere());
+      critere.findOne();
+   }
+   public Critere getcritere(){
+    return critere;
+   }
 
       HashMap<String,Object> session;
       public void setSession(HashMap<String,Object> s){

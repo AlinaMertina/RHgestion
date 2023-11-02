@@ -3,7 +3,11 @@
 <%@page import="java.util.Date"%>
 <%@page import="java.util.Vector"%>
 <%@page import="etu002087.demandebesoin.Demande_besoin"%>
+<%@page import="etu002087.demandebesoin.Hierarchie"%>
+
 <%
+
+  Vector hierarchie=(Vector)  request.getAttribute("hierarchie");
   Vector liste= (Vector) request.getAttribute("liste");
   Integer nbr = (Integer)  request.getAttribute("nbr");
   Integer precedent = new Integer(0);
@@ -55,98 +59,7 @@
 <body>
   <div class="container-scroller">
     <!-- partial:partials/_navbar.html -->
-    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
-      <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <!-- <a class="navbar-brand brand-logo mr-5" href="#"><img src="images/logo.svg" class="mr-2" alt="logo"/></a>
-         <a class="navbar-brand brand-logo-mini" href="#"><img src="images/logo-mini.svg" alt="logo"/></a> -->
-        <h4>Nom Service</h4>
-      </div>
-      <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
-        <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
-          <span class="icon-menu"></span>
-        </button>
-        <ul class="navbar-nav mr-lg-2">
-          <li class="nav-item nav-search d-none d-lg-block">
-            <div class="input-group">
-              <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
-                <span class="input-group-text" id="search">
-                  <i class="icon-search"></i>
-                </span>
-              </div>
-              <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
-            </div>
-          </li>
-        </ul>
-        <ul class="navbar-nav navbar-nav-right">
-          <li class="nav-item dropdown">
-            <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown"></a>
-              <i class="icon-bell mx-0"></i>
-              <span class="count"></span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
-              <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
-              <a class="dropdown-item preview-item">
-                <div class="preview-thumbnail">
-                  <div class="preview-icon bg-success">
-                    <i class="ti-info-alt mx-0"></i>
-                  </div>
-                </div>
-                <div class="preview-item-content">
-                  <h6 class="preview-subject font-weight-normal">Application Error</h6>
-                  <p class="font-weight-light small-text mb-0 text-muted">
-                    Just now
-                  </p>
-                </div>
-              </a>
-              <a class="dropdown-item preview-item">
-                <div class="preview-thumbnail">
-                  <div class="preview-icon bg-warning">
-                    <i class="ti-settings mx-0"></i>
-                  </div>
-                </div>
-                <div class="preview-item-content">
-                  <h6 class="preview-subject font-weight-normal">Settings</h6>
-                  <p class="font-weight-light small-text mb-0 text-muted">
-                    Private message
-                  </p>
-                </div>
-              </a>
-              <a class="dropdown-item preview-item">
-                <div class="preview-thumbnail">
-                  <div class="preview-icon bg-info">
-                    <i class="ti-user mx-0"></i>
-                  </div>
-                </div>
-                <div class="preview-item-content">
-                  <h6 class="preview-subject font-weight-normal">New user registration</h6>
-                  <p class="font-weight-light small-text mb-0 text-muted"></p>
-                    2 days ago
-                  </p>
-                </div>
-              </a>
-            </div>
-          </li>
-          <li class="nav-item nav-profile dropdown">
-            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown"></a>
-              <i class="icon-head menu-icon"></i>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown"></div>
-              <a class="dropdown-item"></a>
-                <i class="ti-settings text-primary"></i>
-                Settings
-              </a>
-              <a class="dropdown-item">
-                <i class="ti-power-off text-primary"></i>
-                Logout
-              </a>
-            </div>
-          </li>
-        </ul>
-        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
-          <span class="icon-menu"></span>
-        </button>
-      </div>
-    </nav>
+
     <!-- partial -->
     <div class="container-fluid page-body-wrapper">
       <!-- partial:partials/_settings-panel.html -->
@@ -154,7 +67,7 @@
       <!-- partial:partials/_sidebar.html -->
 
       <!-- partial -->
-      <div class="main-panel">   
+      <div class="main-panel" style="margin: auto;width: 100%;">   
         <div class="content-wrapper">
           <div class="row">
             <div class="col-lg-12 grid-margin">
@@ -168,15 +81,11 @@
                         <button class="btn btn-success btn-rounded btn-icon" onclick="addService()">
                           <i class="fas fa-plus"></i>
                         </button>
-                          <a href="http://localhost:8080/RHgestion/accuilleinfo.do">
-                            <button class="btn btn-success btn-rounded btn-icon">
-                              <i class="fas fa-angle-left"></i>
-                            </button>
-                          </a>
+                          
                         <div class="content-wrapper"  class="pagination">
                           <div class="btn-group" role="group" aria-label="Basic example" class="pagination2"></div>
                            <a href="http://localhost:8080/RHgestion/paginationdemande_besoin.do?nbr=<%  out.println(precedent); %>" >  <button type="button" class="btn btn-outline-secondary"  >1</button> </a>
-                            <button type="button" class="btn btn-outline-secondary" href="#" >X</button>
+                            <a href="/RHgestion/superieur.do">   <button type="button" class="btn btn-outline-secondary"  >X</button> </a>
                             <a  href="http://localhost:8080/RHgestion/paginationdemande_besoin.do?nbr=<%  out.println(suivant); %>"> <button type="button" class="btn btn-outline-secondary">3</button> </a>
                           </div>
                         <div class="table-responsive">
@@ -185,36 +94,41 @@
                             <thead>
                               <tr>
  <th>iddemande</th>
- <th>horaire</th>
- <th>nbr_employee</th>
- <th>production_actuelle</th>
- <th>production_demander</th>
+ <!-- <th>horaire</th> -->
+ <th>Fonction</th>
+ <th>Nombre employee</th>
+ <!-- <th>production_actuelle</th> -->
+ <!-- <th>production_demander</th> -->
  <th>datedemande</th>
  <th>datefin</th>
- <th>description</th>
+ <th>modif</th>
+ <th>Critere</th>
+ <th>QCM</th>
+ <th>Liste recruter</th>
+
+
+ <!-- <th>description</th> -->
                                     </tr>
-<% for(int i=0; i<liste.size();i++) { Demande_besoin service =  (Demande_besoin) liste.get(i); %>
+                                <% for(int i=0; i<liste.size();i++) { Demande_besoin service =  (Demande_besoin) liste.get(i); service.sethierarchie(); %>
                                     <tr>
                                       <td class="py-1"><% out.println( service.getiddemande() ); %> </td>
-                                      <td class="py-1"><% out.println( service.gethoraire() ); %> </td>
+                                      <td class="py-1"><% out.println( service.gethierarchie().getnomhierarchie() ); %> </td>          
                                       <td class="py-1"><% out.println( service.getnbr_employee() ); %> </td>
-                                      <td class="py-1"><% out.println( service.getproduction_actuelle() ); %> </td>
-                                      <td class="py-1"><% out.println( service.getproduction_demander() ); %> </td>
                                       <td class="py-1"><% out.println( service.getdatedemande() ); %> </td>
                                       <td class="py-1"><% out.println( service.getdatefin() ); %> </td>
-                                      <td class="py-1"><% out.println( service.getdescription() ); %> </td>
+                                     
                                       <td>
                                       <button class="btn btn-info btn-rounded btn-icon" onclick="updateService(<%out.println(i);%>)">
                                         <i class="fas fa-edit"></i>
                                       </button>
                                       </td>
-                                      <td>
+                                      <!-- <td>
                                       <a href="http://localhost:8080/RHgestion/deletedemande_besoin.do?iddemande=<% out.println( service.getiddemande() ); %>">
                                           <button class="btn btn-danger btn-rounded btn-icon">
                                               <i class="fas fa-trash-alt"></i>
                                           </button>
                                       </a>
-                                      </td>
+                                      </td> -->
                                       <td>
                                         <a href="http://localhost:8080/RHgestion/notecriteredemande.do?iddemande=<% out.print( service.getiddemande() ); %>">
                                           <button class="btn btn-info btn-rounded btn-icon" >
@@ -229,7 +143,16 @@
                                           </button>
                                         </a>
                                       </td>
-                                      <% if(service.getfait().compareTo("false")==0) { %>
+                                      <td>
+                                        <a href="http://localhost:8080/RHgestion/listedemandeclient.do?iddemande=<% out.print( service.getiddemande() ); %>">
+                                          <button class="btn btn-info btn-rounded btn-icon" >
+                                            <i class="fas fa-align-justify">D</i>
+                                          </button>
+                                        </a>
+                                      </td>
+
+                                      
+                                      <% if( service.getfait()!=null )  {  if(service.getfait().compareTo("false")==0) { %>
                                         <td>
                                           <a href="http://localhost:8080/RHgestion/demandefait.do?fa=true&&iddemande=<% out.print( service.getiddemande() ); %>">
                                             <button class="btn btn-info btn-rounded btn-icon" >
@@ -237,7 +160,9 @@
                                             </button>
                                           </a>
                                         </td>
-                                      <% } %>
+                                      <% 
+                                      } 
+                                      } %>
                                       
  
                                     </tr>
@@ -265,20 +190,27 @@
                   <form class="forms-sample" id="creation">
                     <div class="form-group">
                       <input type="hidden" class="form-control" id="exampleInputUsername1"  name="iddemande">
-                          <label for="exampleInputUsername1">horaire</label>
-                      <input type="texte" class="form-control" id="exampleInputUsername1"  name="horaire">
-                          <label for="exampleInputUsername1">nbr_employee</label>
-                      <input type="texte" class="form-control" id="exampleInputUsername1"  name="nbr_employee">
-                          <label for="exampleInputUsername1">production_actuelle</label>
+                      
+                          <label for="exampleInputUsername1">Fonction</label>
+                          <select class="form-select" aria-label="Default select example" name="idfhi">
+                            <% for(int i=0;i<hierarchie.size();i++){ Hierarchie fonction= (Hierarchie) hierarchie.get(i); %>
+                              <option value="<% out.print( fonction.getidhierarchie() ); %>"> <% out.println( fonction.getnomhierarchie() ); %> </option>
+                            <% } %>
+                          </select>
+                          <!-- <label for="exampleInputUsername1">horaire</label>
+                      <input type="texte" class="form-control" id="exampleInputUsername1"  name="horaire"> -->
+                          <label for="exampleInputUsername1">Nombre employee</label>
+                      <input type="texte" class="form-control" id="exampleInputUsername1"  name="nbre">
+                          <!-- <label for="exampleInputUsername1">production_actuelle</label>
                       <input type="texte" class="form-control" id="exampleInputUsername1"  name="production_actuelle">
                           <label for="exampleInputUsername1">production_demander</label>
-                      <input type="texte" class="form-control" id="exampleInputUsername1"  name="production_demander">
+                      <input type="texte" class="form-control" id="exampleInputUsername1"  name="production_demander"> -->
                           <label for="exampleInputUsername1">datedemande</label>
-                      <input type="date" class="form-control" id="exampleInputUsername1"  name="datedemande">
+                      <input type="date" class="form-control" id="exampleInputUsername1"  name="debut">
                           <label for="exampleInputUsername1">datefin</label>
-                      <input type="date" class="form-control" id="exampleInputUsername1"  name="datefin">
-                          <label for="exampleInputUsername1">description</label>
-                      <input type="texte" class="form-control" id="exampleInputUsername1"  name="description">
+                      <input type="date" class="form-control" id="exampleInputUsername1"  name="fin">
+                          <!-- <label for="exampleInputUsername1">description</label>
+                      <input type="texte" class="form-control" id="exampleInputUsername1"  name="description"> -->
                          
                       <input type="hidden" class="form-control" id="exampleInputUsername1"  name="idfservice">
                     </div>
@@ -297,25 +229,33 @@
                   <div class="card">
                     <div class="card-body">
                       <h4 class="card-title">Modif</h4>
-                      <form class="forms-sample formulaiupdate">
+                      <form class="forms-sample formulaiupdate" >
                         <div class="form-group">
-                      <input type="hidden" class="form-control" id="exampleInputUsername1"  name="iddemande" value="<% out.print( service.getiddemande() ); %>" >
-                          <label for="exampleInputUsername1">horaire</label>
-                      <input type="texte" class="form-control" id="exampleInputUsername1"  name="horaire" value="<% out.print( service.gethoraire() ); %>" >
-                          <label for="exampleInputUsername1">nbr_employee</label>
-                      <input type="texte" class="form-control" id="exampleInputUsername1"  name="nbr_employee" value="<% out.print( service.getnbr_employee() ); %>" >
-                          <label for="exampleInputUsername1">production_actuelle</label>
+                      <input type="hidden" class="form-control" id="exampleInputUsername1"  name="idde" value="<% out.print( service.getiddemande() ); %>" >
+                          <!-- <label for="exampleInputUsername1">horaire</label>
+                      <input type="texte" class="form-control" id="exampleInputUsername1"  name="horaire" value="<% out.print( service.gethoraire() ); %>" > --> -->
+                          <label for="exampleInputUsername1">Nombre employee</label>
+                      <input type="text" class="form-control" id="exampleInputUsername1"  name="nbre" value="<% out.print( service.getnbr_employee() ); %>" >
+                          <!-- <label for="exampleInputUsername1">production_actuelle</label>
                       <input type="texte" class="form-control" id="exampleInputUsername1"  name="production_actuelle" value="<% out.print( service.getproduction_actuelle() ); %>" >
                           <label for="exampleInputUsername1">production_demander</label>
-                      <input type="texte" class="form-control" id="exampleInputUsername1"  name="production_demander" value="<% out.print( service.getproduction_demander() ); %>" >
-                          <label for="exampleInputUsername1">datedemande</label>
-                      <input type="date" class="form-control" id="exampleInputUsername1"  name="datedemande" value="<% out.print( service.getdatedemande() ); %>" >
-                          <label for="exampleInputUsername1">datefin</label>
-                      <input type="date" class="form-control" id="exampleInputUsername1"  name="datefin" value="<% out.print( service.getdatefin() ); %>" >
-                          <label for="exampleInputUsername1">idfservice</label>
-                      <input type="texte" class="form-control" id="exampleInputUsername1"  name="idfservice" value="<% out.print( service.getidfservice() ); %>" >
+                      <input type="texte" class="form-control" id="exampleInputUsername1"  name="production_demander" value="<% out.print( service.getproduction_demander() ); %>" > -->
+                          <!-- <label for="exampleInputUsername1">datedemande</label> -->
+                      <!-- <input type="date" class="form-control" id="exampleInputUsername1"  name="datedemande" value="<% out.print( service.getdatedemande() ); %>" > -->
+                          <!-- <label for="exampleInputUsername1">datefin</label> -->
+                      <!-- <input type="date" class="form-control" id="exampleInputUsername1"  name="datefin" value="<% out.print( service.getdatefin() ); %>" > -->
+                          <!-- <label for="exampleInputUsername1">idfservice</label>
+                      <input type="texte" class="form-control" id="exampleInputUsername1"  name="idfservice" value="<% out.print( service.getidfservice() ); %>" > -->
+                      <label for="exampleInputUsername1">Fonction</label>
+                      
+                      <select class="form-select" aria-label="Default select example" name="ihe" value="<%= service.getidfhierarchie() %>">
+                        <% for(int a=0;a<hierarchie.size();a++){ Hierarchie fonction= (Hierarchie) hierarchie.get(a); %>
+                          <option value="<% out.print( fonction.getidhierarchie() ); %>"> <% out.println( fonction.getnomhierarchie() ); %> </option>
+                        <% } %>
+                      </select>
+
                         </div>
-                        <button type="submit" class="btn btn-primary mr-2" onclick="updateforme(<%out.println(i);%>)">Submit</button>
+                        <button type="submit" class="btn btn-primary mr-2" onclick="updateforme(<%= i  %>)">Submit</button>
                       </form>
                     </div>
                   </div>
@@ -324,12 +264,7 @@
             </div>
         <% } %>
 <!-- partial:../../partials/_footer.html -->
-<footer class="footer">
-          <div class="d-sm-flex justify-content-center justify-content-sm-between">
-            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021.  Premium <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>
-            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="ti-heart text-danger ml-1"></i></span>
-          </div>
-        </footer>
+
         <!-- partial -->
       </div>
     </div>
@@ -375,9 +310,11 @@
       document.getElementById("creation").addEventListener("submit", function(event) {
         event.preventDefault(); 
         const formData = new FormData(this); 
-        fetch("http://localhost:8080/RHgestion/insertdemande_besoin.do", {
+        fetch("http://localhost:8080/RHgestion/insertnewdemande.do", {
             method: "POST", 
             body: formData // Les données du formulaire
+            // "http://localhost:8080/RHgestion/insertdemande_besoin.do
+             
         })
         .then(response => response.json()) 
         .then(data => {

@@ -90,35 +90,102 @@ public class Login_employee extends Generaliser{
     model.setnompage("login.jsp");
     return model; 
   }
+  @Urlannotation(index = "deconnexion.do",nomparametre={}) 
+  public etu002087.framework.ModelView deconnexion(){ 
+    ModelView model = new ModelView(); 
+    model.setnompage("login.jsp");
+    return model; 
+  }
+
+  @Urlannotation(index = "sudo.do",nomparametre={}) 
+  public etu002087.framework.ModelView sudo(){ 
+    ModelView model = new ModelView(); 
+    model.setnompage("accuillesudonew.jsp");
+    return model; 
+  }
+
+  @Urlannotation(index = "superieur.do",nomparametre={}) 
+  public etu002087.framework.ModelView superieur(){ 
+    ModelView model = new ModelView(); 
+    model.setnompage("accuilsuph1.jsp");
+    return model; 
+  }
+
+  @Urlannotation(index = "employee.do",nomparametre={}) 
+  public etu002087.framework.ModelView employee(){ 
+    ModelView model = new ModelView(); 
+    model.setnompage("accuielemployer.jsp");
+    return model; 
+  }
+
+  @Urlannotation(index = "etatpay.do",nomparametre={}) 
+  public etu002087.framework.ModelView etat(){ 
+    ModelView model = new ModelView(); 
+    model.setnompage("etatdepay.jsp");
+    return model; 
+  }
+
 
   @Urlannotation(index = "connexion.do",nomparametre={}) 
   public etu002087.framework.ModelView connexion1(){ 
     ModelView model = new ModelView(); 
+    System.out.println("idemployyyyy"+getidfemployee());
+    System.out.println("mot de pass "+" where idfemployee = '"+getidfemployee()+"' and modpass = '"+getmodpass()+"'");
+
     if(super.selectAllWithcondition(" where idfemployee = '"+getidfemployee()+"' and modpass = '"+getmodpass()+"'").size()>0){
+      
       ConnectPostgres conne = new ConnectPostgres();
       Connection con = conne.getconnection();
       try {
+//modification table de connexion
+
+        // Statement stmt= con.createStatement();
+        // ResultSet donner = stmt.executeQuery("select service.nomservice,service.idservice from service join Employee on  service.idservice=Employee.idservice where Employee.idemployee='"+getidfemployee()+"'");
+        // while(donner.next()){
+        //   model.addsession("service",donner.getString("nomservice"));
+        //   model.addsession("idservice",donner.getString("idservice"));
+        //   if(donner.getString("nomservice").compareTo("gestion")==0){
+        //     model.setnompage("accuillesudo.jsp");
+        //   }else{
+        //     model.setnompage("accuilleinfo.jsp");
+        //   }
+        // }
+        model.addsession("iduser",getidfemployee());
         Statement stmt= con.createStatement();
-        ResultSet donner = stmt.executeQuery("select service.nomservice,service.idservice from service join Employee on  service.idservice=Employee.idservice where Employee.idemployee='"+getidfemployee()+"'");
+        ResultSet donner = stmt.executeQuery("select idfhierarchiegenerale from detailleemploie where idfcandidat='"+getidfemployee()+"'");
         while(donner.next()){
-          model.addsession("service",donner.getString("nomservice"));
-          model.addsession("idservice",donner.getString("idservice"));
-          if(donner.getString("nomservice").compareTo("gestion")==0){
-            model.setnompage("accuillesudo.jsp");
-          }else{
-            model.setnompage("accuilleinfo.jsp");
-          }
+              if(donner.getString("idfhierarchiegenerale").toUpperCase().compareTo("GENE00001")==0){
+                model.setnompage("accuillesudonew.jsp");
+              }
+              else if(donner.getString("idfhierarchiegenerale").toUpperCase().compareTo("GENE00002")==0){
+                model.setnompage("accuilsuph1.jsp");
+              }
+              else if(donner.getString("idfhierarchiegenerale").toUpperCase().compareTo("GENE00003")==0){
+                model.setnompage("accuielemployer.jsp");
+              }
+
+        }
+        donner.close();
+       
+        String requete = "select idservice from detailleemploie join Hierarchie on detailleemploie.idfhierarchie=Hierarchie.idhierarchie join service on service.idservice=Hierarchie.idfservice where idfcandidat='"+getidfemployee()+"'";
+        donner = stmt.executeQuery(requete);
+        Integer in = 0;
+        while(donner.next()){
+          model.addsession("idserviceuser",donner.getString("idservice"));
         }
         stmt.close();
         con.close();
+
       } catch (Exception e) {
           System.out.println(e);
       }
+      
     }else{
       model.setnompage("login.jsp");
     }
     return model; 
   }
+
 
   @Urlannotation(index = "accuilleinfo.do",nomparametre={}) 
   public etu002087.framework.ModelView accuilleinfo(){ 
